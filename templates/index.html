@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <form action="/search" method="get">
+        <input type="text" name="city" autocomplete="off" placeholder="Search city">
+        <button type="submit">Search</button>
+    </form>
+    <h2>{{ city }}</h2>
+    <canvas id="weatherChart"></canvas>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.min.js"></script>
+    <script>
+        
+    </script>
+{% endblock %}
