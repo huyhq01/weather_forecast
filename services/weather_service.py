@@ -2,7 +2,6 @@ import requests
 import os
 from dotenv import load_dotenv
 from typing import Any
-from datetime import date, timedelta
 
 
 def get_coordinates(city_name: str) -> tuple[float, float]:
@@ -27,8 +26,6 @@ def get_coordinates(city_name: str) -> tuple[float, float]:
 
 
 def get_weather(lat: float, lon: float) -> dict[str, Any]:
-    today = date.today()
-    tomorrow = today + timedelta(days=1)
     url = "https://api.open-meteo.com/v1/forecast"
     params: dict[str, Any] = {
         "latitude": lat,
@@ -37,13 +34,9 @@ def get_weather(lat: float, lon: float) -> dict[str, Any]:
             [
                 "temperature_2m",
                 "cloudcover",
-                "precipitation_probability",
                 "weathercode",
             ]
         ),
-        "start_date": today,
-        "end_date": tomorrow,
-        "lang": "vi",
     }
     response = requests.get(url, params=params)
     data = response.json()
