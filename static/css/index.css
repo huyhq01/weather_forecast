@@ -1,0 +1,17 @@
+.chip {
+  flex: 0 0 auto;
+  min-width: 70px;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid #ddd;
+  background: #fff;
+  text-align: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.chip[aria-selected='true'] {
+  background: #4f46e5;
+  color: white;
+  border: 2px solid white; /* viền trắng giống nhau */
+}

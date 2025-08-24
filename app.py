@@ -26,6 +26,7 @@ def get_weather():
     city = request.cookies.get("city", "Ho Chi Minh City")
     coordinate = weather_service.get_coordinates(city)
     data = weather_service.get_weather(coordinate[0], coordinate[1])
+    print(data)
     # seperate data into different variables
     labels: list[str] = []
     for item in data["hourly"]["time"][:]:
