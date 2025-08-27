@@ -1,28 +1,27 @@
 import requests
-import os
-from dotenv import load_dotenv
 from typing import Any
 
 
-def get_coordinates(city_name: str) -> tuple[float, float]:
-    """Adds city name
-    Args:
-        city_name (str): city name from user input to get coordinates
-    Returns:
-        tuple[float, float]: the coordinates of city
-    """
-    load_dotenv()  # đọc file .env
-    APPID = os.getenv("APPID")
-    url = "http://api.openweathermap.org/geo/1.0/direct"
-    # limit: only get the first result of cities found
-    params: dict[str, Any] = {"q": city_name, "limit": 1, "appid": APPID}
-    response = requests.get(url, params=params)
-    data = response.json()
-    if response.status_code != 200:
-        raise Exception(f"Status: {data['cod']}. Message: {data['message']}")
-    lat = data[0]["lat"]
-    lon = data[0]["lon"]
-    return (lat, lon)
+def get_info(city_name: str) -> dict[str, Any]:
+    url = "https://geocoding-api.open-meteo.com/v1/search"
+    params: dict[str, Any] = {"name": city_name, 'count': 1}
+    try:
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        data = response.json()
+        if 'results' not in data or not data['results']:
+            raise Exception("City not found")
+        name = data['results'][0]["name"]
+        lat = data['results'][0]["latitude"]
+        lon = data['results'][0]["longitude"]
+        return {'lat': lat, 'lon': lon, 'name': name}
+    except requests.exceptions.RequestException as e:
+        raise Exception(f"Connection error: {e}")
+    except (KeyError, IndexError):
+        # if there is no "results" key or results is empty
+        raise Exception("Invalid API response format")
+    except Exception as e:
+        raise e
 
 
 def get_weather(lat: float, lon: float) -> dict[str, Any]:
@@ -43,5 +42,5 @@ def get_weather(lat: float, lon: float) -> dict[str, Any]:
     return data
 
 
-# coordinate = get_coordinates("Ho Chi Minh City")
+# print(get_coordinates("Ho Chi Minh City"))
 # print(get_weather(coordinate[0], coordinate[1]))

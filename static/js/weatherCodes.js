@@ -1,4 +1,4 @@
-const weatherCodeMap = {
+const weatherCodeDescription = {
   0: "Trời quang ☀️",
   1: "Hầu như quang đãng 🌤️",
   2: "Có mây rải rác ⛅",
@@ -28,7 +28,3 @@ const weatherCodeMap = {
   96: "Dông kèm mưa đá nhỏ ⚡🧊",
   99: "Dông kèm mưa đá to ⚡🧊💥",
 };
-
-function mapWeatherCode(code) {
-  return weatherCodeMap[code];
-}

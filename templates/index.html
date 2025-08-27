@@ -5,21 +5,19 @@
 {% endblock %}
 
 {% block body %}
-<form action="/search" method="get">
+<form method="post">
     <input type="text" name="city" autocomplete="off" placeholder="Search city">
     <button type="submit">Search</button>
 </form>
 
-<div class="day-chips">
-    <button class="chip" aria-selected="true">
-        23/08
-    </button>
-    <button class="chip" data-date="24/08">24/08</button>
-    <button class="chip" data-date="25/08">25/08</button>
-    <button class="chip" data-date="26/08">26/08</button>
-    <button class="chip" data-date="27/08">27/08</button>
-    <button class="chip" data-date="28/08">28/08</button>
-    <button class="chip" data-date="29/08">29/08</button>
+<div class="block-select-day">
+    <button class="btn-day" data-index="0" aria-selected="true"></button>
+    <button class="btn-day" data-index="1" ></button>
+    <button class="btn-day" data-index="2" >`</button>
+    <button class="btn-day" data-index="3" >`</button>
+    <button class="btn-day" data-index="4" >`</button>
+    <button class="btn-day" data-index="5" >`</button>
+    <button class="btn-day" data-index="6" >`</button>
 </div>
 
 <canvas id="weatherChart"></canvas>
@@ -29,6 +27,7 @@
 {% block scripts %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="{{ url_for('static', filename='js/weatherCodes.js') }}"></script>
-<script src="{{ url_for('static', filename='js/chart.js') }}"></script>
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/chart.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/index.js') }}"></script>
+<script type="module" src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% endblock %}
