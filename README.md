@@ -1,7 +1,8 @@
 # Weather Forecast Web Application (in developement)
 
 This project is very simple at now
- - User find location to view weather in 7 days from today 
- - The app get weather data at a location from api Open-meteo and show iy using chart.js (default location is last search or Ho Chi Minh City)
+ - Chart shows weather in 7 days from today 
+ - User can find location
+ - The app get weather data at that location from api Open-meteo and show it using chart.js (default location is last search or Ho Chi Minh City)
  - Any execptions will raise error
 
